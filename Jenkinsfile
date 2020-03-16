@@ -17,8 +17,19 @@ pipeline {
     }
 
     stage('List files') {
-      steps {
-        sh 'ls -lR /'
+      parallel {
+        stage('List files') {
+          steps {
+            sh 'ls -lR'
+          }
+        }
+
+        stage('PWD') {
+          steps {
+            sh 'pwd'
+          }
+        }
+
       }
     }
 
